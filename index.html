@@ -1,0 +1,447 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Dunedin × Far Out</title>
+<style>
+  /* Layout: Dunedin-led editorial brief — black masthead band framed by a photo ticker, white body, Dunedin slate as the working accent, Otago gold held in reserve for Otago-specific tags. Deliberately single-theme (light) to match the Dunedin brand's own black/white/photography system. */
+  :root{
+    --bg:#FFFFFF; --surface:#F4F5F7; --surface-raised:#ECEEF1; --ink:#15181D; --muted:#5B6672;
+    --heading:#0A0C10; --accent:#2F4757; --accent-ink:#FFFFFF; --line:rgba(10,14,20,0.12);
+    --otago:#B8860B; --tbc:#8A6D1F;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'IBM Plex Sans', -apple-system, Helvetica, Arial, sans-serif;
+    color-scheme: light;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:740px; margin:0 auto; padding-block:0 90px; padding-left:max(20px, env(safe-area-inset-left,0px)); padding-right:max(20px, env(safe-area-inset-right,0px)); }
+
+  /* ticker tape */
+  .ticker-wrap{ overflow:hidden; width:100%; height:52px; background:#000; }
+  .ticker-track{ display:flex; width:max-content; height:52px; animation:tickerL 46s linear infinite; }
+  .ticker-track.rev{ animation-name:tickerR; }
+  .ticker-track img{ height:52px; width:auto; object-fit:cover; flex:none; margin-right:2px; filter:saturate(1.05); }
+  @keyframes tickerL{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @keyframes tickerR{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
+  @media (prefers-reduced-motion: reduce){ .ticker-track{ animation:none; } }
+
+  /* black masthead band, sandwiched by the ticker */
+  .hero{ margin:0 0 30px; }
+  .band{ background:#000; padding:26px max(20px, env(safe-area-inset-left,0px)) 30px max(20px, env(safe-area-inset-right,0px)); }
+  .hero-lockup{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; max-width:740px; margin:0 auto 10px; }
+  .hero-lockup img.dunedin-word{ height:27px; width:auto; display:block; filter:invert(1); }
+  .collab-x{ font-family:var(--serif); font-style:italic; font-size:19px; color:#fff; opacity:0.9; }
+  .collab-far{ font-family:var(--sans); font-weight:600; font-size:12.5px; letter-spacing:0.16em; color:#fff; text-transform:uppercase; padding:5px 11px; border:1px solid rgba(255,255,255,0.55); border-radius:999px; white-space:nowrap; }
+  .hero-otago{ display:flex; align-items:center; gap:7px; max-width:740px; margin:0 auto 14px; }
+  .hero-otago img{ height:16px; width:auto; opacity:0.9; }
+  .hero-otago span{ font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.6); }
+  .hero-tag{ font-size:13px; color:rgba(255,255,255,0.78); max-width:46ch; max-width:62ch; margin:0 auto; }
+
+  h1{ font-family:var(--serif); font-weight:500; text-wrap:balance; font-size:clamp(28px,5.8vw,42px); line-height:1.14; color:var(--heading); margin:34px 0 16px; }
+  .standfirst{ font-size:17px; color:var(--muted); max-width:62ch; margin:0 0 8px; }
+  .meta{ font-size:13.5px; color:var(--muted); margin:0 0 30px; }
+  .meta b{ color:var(--ink); font-weight:600; }
+
+  section{ padding:32px 0; border-top:1px solid var(--line); }
+  section:first-of-type{ border-top:none; padding-top:6px; }
+  .label{ font-size:12.5px; letter-spacing:0.09em; color:var(--accent); font-weight:600; margin:0 0 10px; text-transform:uppercase; }
+  h2{ font-family:var(--serif); font-weight:500; font-size:23px; color:var(--heading); margin:0 0 14px; line-height:1.3; text-wrap:balance; }
+  h3{ font-family:var(--serif); font-weight:500; font-size:16.5px; color:var(--heading); margin:0 0 4px; }
+
+  p{ margin:0 0 14px; max-width:64ch; }
+  p:last-child{ margin-bottom:0; }
+  strong{ color:var(--ink); font-weight:600; }
+  .tbc{ color:var(--tbc); border-bottom:1px dotted var(--tbc); }
+  .note{ font-size:12.5px; color:var(--muted); font-style:italic; margin-top:14px; }
+
+  ul.bullets{ margin:0 0 14px; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px; }
+  ul.bullets li{ position:relative; padding-left:20px; max-width:64ch; }
+  ul.bullets li::before{ content:""; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  ol.steps{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:16px; counter-reset:step; }
+  ol.steps li{ position:relative; padding-left:38px; max-width:64ch; }
+  ol.steps li::before{ counter-increment:step; content:counter(step); position:absolute; left:0; top:0; width:26px; height:26px; border-radius:50%; background:#000; color:#fff; font-family:var(--serif); font-weight:600; font-size:13px; display:flex; align-items:center; justify-content:center; }
+
+  .card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:10px; }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:5px; padding:16px 18px; min-width:0; }
+  .card h3{ margin-bottom:3px; }
+  .card .who{ font-size:12.5px; color:var(--muted); margin-bottom:8px; }
+  .card .desc{ font-size:13.5px; color:var(--ink); margin:0; line-height:1.55; }
+  .card .status{ display:inline-block; margin-top:10px; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--tbc); border:1px solid rgba(138,109,31,0.35); border-radius:999px; padding:3px 9px; }
+  .card .status.live{ color:var(--accent); border-color:rgba(47,71,87,0.35); }
+
+  .roster-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(290px,1fr)); gap:4px 28px; margin-top:4px; }
+  .roster-row{ padding:9px 0; min-width:0; }
+  .roster{ font-size:13.5px; color:var(--ink); line-height:1.7; margin:0; }
+  .roster b{ font-weight:600; }
+  .org{ color:var(--muted); font-weight:400; }
+  .roster a, .card a{ color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+  .card a:hover{ border-color:var(--accent); color:var(--accent); }
+  .roster a:hover{ border-color:var(--accent); color:var(--accent); }
+
+  .logo-strip{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:16px; }
+  .logo-badge{ display:flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:9px 13px; font-family:var(--sans); font-weight:600; font-size:12.5px; letter-spacing:0.03em; color:var(--ink); }
+  .logo-badge img{ height:16px; width:auto; }
+  .logo-badge .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); flex:none; }
+
+  footer{ margin-top:44px; padding-top:22px; border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
+
+  @media (max-width:480px){ .card-grid{ grid-template-columns:1fr; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="hero">
+  <div class="ticker-wrap"><div class="ticker-track">
+    <img src="assets/ticker/664014-thumb.jpg" alt="">
+    <img src="assets/ticker/883646-thumb.jpg" alt="">
+    <img src="assets/ticker/384853-thumb.jpg" alt="">
+    <img src="assets/ticker/383428-thumb.jpg" alt="">
+    <img src="assets/ticker/377668-thumb.jpg" alt="">
+    <img src="assets/ticker/868853-thumb.jpg" alt="">
+    <img src="assets/ticker/385404-thumb.jpg" alt="">
+    <img src="assets/ticker/383562-thumb.jpg" alt="">
+    <img src="assets/ticker/736171-thumb.jpg" alt="">
+    <img src="assets/ticker/664014-thumb.jpg" alt="">
+    <img src="assets/ticker/883646-thumb.jpg" alt="">
+    <img src="assets/ticker/384853-thumb.jpg" alt="">
+    <img src="assets/ticker/383428-thumb.jpg" alt="">
+    <img src="assets/ticker/377668-thumb.jpg" alt="">
+    <img src="assets/ticker/868853-thumb.jpg" alt="">
+    <img src="assets/ticker/385404-thumb.jpg" alt="">
+    <img src="assets/ticker/383562-thumb.jpg" alt="">
+    <img src="assets/ticker/736171-thumb.jpg" alt="">
+  </div></div>
+
+  <div class="band">
+    <div class="hero-lockup">
+      <img class="dunedin-word" src="assets/dunedinnz-logo-black.png" alt="Dunedin">
+      <span class="collab-x">×</span>
+      <span class="collab-far">Far Out</span>
+    </div>
+    <div class="hero-otago"><img src="assets/otago-logo-mark.png" alt="University of Otago mark"><span>with University&nbsp;of&nbsp;Otago</span></div>
+    <p class="hero-tag">Building the bench of Dunedin and Otago opportunities for the Far Out network.</p>
+  </div>
+
+  <div class="ticker-wrap"><div class="ticker-track rev">
+    <img src="assets/ticker/378807-thumb.jpg" alt="">
+    <img src="assets/ticker/385076-thumb.jpg" alt="">
+    <img src="assets/ticker/868893-thumb.jpg" alt="">
+    <img src="assets/ticker/883063-thumb.jpg" alt="">
+    <img src="assets/ticker/664014-thumb.jpg" alt="">
+    <img src="assets/ticker/384853-thumb.jpg" alt="">
+    <img src="assets/ticker/383428-thumb.jpg" alt="">
+    <img src="assets/ticker/868853-thumb.jpg" alt="">
+    <img src="assets/ticker/736171-thumb.jpg" alt="">
+    <img src="assets/ticker/378807-thumb.jpg" alt="">
+    <img src="assets/ticker/385076-thumb.jpg" alt="">
+    <img src="assets/ticker/868893-thumb.jpg" alt="">
+    <img src="assets/ticker/883063-thumb.jpg" alt="">
+    <img src="assets/ticker/664014-thumb.jpg" alt="">
+    <img src="assets/ticker/384853-thumb.jpg" alt="">
+    <img src="assets/ticker/383428-thumb.jpg" alt="">
+    <img src="assets/ticker/868853-thumb.jpg" alt="">
+    <img src="assets/ticker/736171-thumb.jpg" alt="">
+  </div></div>
+</div>
+
+<div class="wrap">
+
+  <h1>Building the Dunedin &amp; Otago bench for Far Out</h1>
+  <p class="standfirst">A working map of who we're profiling across Dunedin and the University of Otago — established exporters, research spin-outs, and the city's startup roster — ahead of putting each in front of the Far Out convoy.</p>
+  <p class="meta"><b>Owner:</b> Jess Luxton &middot; <b>Status:</b> draft, gathering bios &middot; <b>Submitting to:</b> Rob Coneybeer &amp; Annabelle Anderson</p>
+
+  <section>
+    <p class="label">Far Out</p>
+    <p>Two distinct things come out of being on this list:</p>
+    <ul class="bullets">
+      <li><strong>A place at the Dunedin evening</strong> &mdash; the dinner and mixer where the convoy meets the city, at the Railway Station, with a chance of a feature conversation on the night.</li>
+      <li><strong>A possible seat in the convoy</strong> &mdash; joining part of the route on from Dunedin to Queenstown.</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="label">Dunedin's proof points</p>
+    <h2>Established exporters, showcased rather than raising</h2>
+    <p>These are well-known, already-successful Dunedin tech businesses. They're not on the list for funding &mdash; they're here to show Far Out's visiting investors the calibre of company the south already produces.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>United Machinists</h3>
+        <p class="who">Sarah Ramsay</p>
+        <p class="desc">A second-generation, family-owned Dunedin precision engineering business under Sarah and Alex Ramsay, producing more than 10,000 components a year for space and advanced aviation, 50,000+ prosthetic and surgical instruments, and 30,000 other complex parts for defence, medical, electronics and automotive clients. Already introduced to Rob Coneybeer and Annabelle Anderson.</p>
+        <span class="status live">Introduced</span>
+      </div>
+      <div class="card">
+        <h3>BLIS Technologies</h3>
+        <p class="who">Scott Johnston</p>
+        <p class="desc">A University of Otago spin-out built on Professor Emeritus John Tagg's discovery of the <em>Streptococcus salivarius</em> probiotic strains BLIS K12&trade; and BLIS M18&trade;, pioneering the science of the oral microbiome. Backed by decades of research, strong IP and clinical validation, its strains are sold in more than 70 countries and licensed into leading supplement brands including NOW Foods, Life Extension and Nature Wise.</p>
+        <span class="status live">Bio received</span>
+      </div>
+      <div class="card">
+        <h3>Oritain</h3>
+        <p class="who"></p>
+        <p class="desc">Spun out of the University of Otago in 2008 by Dr Helen Darling and Prof Russell Frew, Oritain uses forensic and data science to verify where raw materials actually come from &mdash; tracing cotton, coffee, food and fibre back to origin to fight fraud and support ESG compliance. Used across 20+ industries worldwide, with hubs in Auckland, London, Washington DC, Sydney and Zug, and a US$57m Series C round in 2023.</p>
+        <span class="status">To contact</span>
+      </div>
+      <div class="card">
+        <h3>Virtual Eye</h3>
+        <p class="who">Animation Research Ltd</p>
+        <p class="desc">The sports graphics arm of Dunedin's Animation Research Ltd, Virtual Eye has supplied the 3D broadcast graphics behind the America's Cup since 1992 and worked major cricket broadcasts including the Ashes, winning an Emmy for its America's Cup app. Still Dunedin-based, still broadcasting to the world.</p>
+        <span class="status">To contact</span>
+      </div>
+      <div class="card">
+        <h3>Scott Technology</h3>
+        <p class="who">NZX: SCT</p>
+        <p class="desc">Dunedin-based and NZX-listed, Scott Technology designs, builds and services automated and robotic production lines, with vision-guided robotics operations across Australasia, China, Europe and the US. Founded in 1913, it's one of the city's longest-running tech exporters.</p>
+        <span class="status">To contact</span>
+      </div>
+      <div class="card">
+        <h3>Education Perfect</h3>
+        <p class="who"></p>
+        <p class="desc">Founded in Dunedin in 2007 as Language Perfect by brothers Craig and Shane Smith, Education Perfect is a K-12 learning, assessment and analytics platform now used in schools worldwide, with around 160 staff still headquartered in Dunedin. Global investment firm KKR took a majority stake in a deal reported at roughly $455 million.</p>
+        <span class="status">To contact</span>
+      </div>
+      <div class="card">
+        <h3>ADInstruments</h3>
+        <p class="who">Alex Black</p>
+        <p class="desc">Founded in Dunedin in the Macknight family home in the late 1980s, ADInstruments became the world's largest data acquisition company for life sciences, with its PowerLab and LabChart systems used in more than 100 countries. Still headquartered in Dunedin, with a team of roughly 200.</p>
+        <span class="status">To contact</span>
+      </div>
+      <div class="card">
+        <h3>PocketSmith</h3>
+        <p class="who">Jason Leong</p>
+        <p class="desc">Founded in Dunedin in 2008 by Jason Leong (CEO) and James Wigglesworth (CTO), PocketSmith is a personal finance and budgeting platform used worldwide. Recently selected as the only New Zealand company in Mastercard's global Start Path Open Banking and Embedded Finance programme.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Zestt Wellness</h3>
+        <p class="who">Anna Campbell &amp; Darcy Schack &middot; <a href="https://www.zesttwellness.com/" target="_blank" rel="noopener">zesttwellness.com</a></p>
+        <p class="desc">Anna Campbell and Darcy Schack founded Zestt Wellness in Dunedin during the 2020 lockdown, developing natural bioactive products for immunity and lung health. Campbell also chairs Otago Innovation Ltd.</p>
+        <span class="status">To contact</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">University of Otago</p>
+    <h2>Research commercialisation opportunities to profile</h2>
+    <p>Flagged after meeting with <strong>Greg Cook</strong> <span class="org">(DVC Research and Enterprise)</span>, <strong>Paul Foster-Bell</strong>, <strong>Sam Heenan</strong> and <strong>David Powell</strong> <span class="org">(Business Development Manager, Research &amp; Enterprise)</span>, and cross-checked against Otago Innovation Limited's own list. Each needs a bio pulled together &mdash; their offering, where they're at with investment, and the Far Out opportunity &mdash; before we can submit them.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Prof Harald Schwefel</h3>
+        <p class="who">Physics &middot; <a href="https://www.qbifrost.com/" target="_blank" rel="noopener">Q-Bifröst</a></p>
+        <p class="desc">Pioneering microwave-to-optical interlink technology, to enable an internet for quantum computers. Featured as the Otago Snapshot in the November 2026 SpaceBusiness@Otago newsletter &mdash; see <a href="https://securitybrief.co.nz/story/new-zealand-designs-photonic-quantum-growth-engine" target="_blank" rel="noopener">New Zealand designs photonic &amp; quantum growth engine</a>.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Platypus Bio</h3>
+        <p class="who">Prof Peter Fineran &amp; Dr Rob Fagerlund &middot; Microbiology &amp; Immunology</p>
+        <p class="desc">Developing next-generation CRISPR-based diagnostics and therapeutics. The related phage-powered antimicrobial work already has some US venture capital &mdash; see the <a href="https://www.odt.co.nz/news/dunedin/otago-breakthrough-in-antibiotic-resistance-fight-bbfry47k" target="_blank" rel="noopener">ODT coverage</a>.</p>
+        <span class="status live">In progress</span>
+      </div>
+      <div class="card">
+        <h3>Solros Therapeutics</h3>
+        <p class="who">Prof Debbie Hay &amp; Dr Elliott Dunn</p>
+        <p class="desc">New small-molecule therapies to address unmet need in migraine.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Novel Migraine Therapeutics</h3>
+        <p class="who">Dr Zoe Tasma</p>
+        <p class="desc">A new class of migraine therapeutic drugs &mdash; same research group as Solros, a distinct project and mechanism.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Life Saving TXA Formulations</h3>
+        <p class="who">Assoc Prof Greg Walker</p>
+        <p class="desc">Safe, high-concentration tranexamic acid to improve outcomes from life-threatening blood loss.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Prof Melanie Bussey</h3>
+        <p class="who">Concussion monitoring tech</p>
+        <p class="desc">Hardware and software to improve the detection and treatment of sports-related concussion injuries.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Dr Stuart Chambers</h3>
+        <p class="who">Micropore-based single protein detection</p>
+        <p class="desc">Technology to detect hard-to-detect proteins for human diagnostics. Also Otago Innovation's Entrepreneur in Residence, Christchurch campus.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>ENGAGE Self-Regulation</h3>
+        <p class="who">Prof Dione Healy</p>
+        <p class="desc">An evidence-based approach to developing self-regulation in children, already commercialised and rolled out nationwide, with potential to scale internationally.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Orlia Bio</h3>
+        <p class="who">Dr Evelyn Armstrong &amp; Dr Christina McGraw</p>
+        <p class="desc">Hardware and software for real-time analysis of cellular protein, carbohydrate and lipid constituents. First application: algal biofuel bioproduction optimisation.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Muscular Dystrophy Therapeutics</h3>
+        <p class="who">Angus Lindsay &middot; Christchurch</p>
+        <p class="desc">Gene therapy approaches for Duchenne's muscular dystrophy.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Ventimate</h3>
+        <p class="who">Prof Yusuf Cakmak</p>
+        <p class="desc">A non-invasive wearable neurostimulation technology to treat respiratory conditions such as asthma.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div style="grid-column:1/-1; margin:4px 0 -2px; font-size:11.5px; letter-spacing:0.07em; text-transform:uppercase; color:var(--muted);">Also flagged, outside the Otago Innovation Limited list</div>
+      <div class="card">
+        <h3>Amaroq Therapeutics</h3>
+        <p class="who">Therapeutics</p>
+        <p class="desc">Added to the list &mdash; lead contact and offering still to confirm.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Joanne Choi</h3>
+        <p class="who">School of Dentistry</p>
+        <p class="desc">A clear composite material developed out of the dental school.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Neumic Therapeutics</h3>
+        <p class="who">Dr John Reynolds &middot; Therapeutics</p>
+        <p class="desc">Therapeutics venture led by Dr John Reynolds.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Nicholas Cullen</h3>
+        <p class="who">Geography department</p>
+        <p class="desc">An avalanche safety app.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Paul Glue</h3>
+        <p class="who">Psychological Medicine</p>
+        <p class="desc">Ketamine therapy research, alongside Douglas Pharmaceuticals.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>The Dunedin Study</h3>
+        <p class="who"><span class="tbc">Dunedin Multidisciplinary Health &amp; Development Study &mdash; pace-of-ageing work, confirm angle</span></p>
+        <p class="desc">The long-running Dunedin cohort study.</p>
+        <span class="status">Bio pending</span>
+      </div>
+    </div>
+    <p class="note">The first eleven are drawn directly from Otago Innovation Limited's own list (names, roles and project framing taken from them). Amaroq Therapeutics still needs a confirmed founder before a bio is drafted.</p>
+  </section>
+
+  <section>
+    <p class="label">From Startup Dunedin</p>
+    <h2>A list of established and developing businesses</h2>
+    <p>Grace's list from Startup Dunedin, both newer and founding businesses. Each will also be asked for a short bio to submit alongside the Otago list.</p>
+    <div class="card-grid" style="margin-bottom:18px;">
+      <div class="card">
+        <h3>Balancing Monkey Games</h3>
+        <p class="who">Anna Barham &middot; Managing Director &middot; <a href="https://www.balancingmonkeygames.com/" target="_blank" rel="noopener">balancingmonkeygames.com</a></p>
+        <p class="desc">Anna and Sam Barham founded Balancing Monkey Games in Dunedin in 2017, an award-winning indie studio behind the cosy city-builder <em>Before We Leave</em> and its new sequel, <em>Beyond These Stars</em>. Anna has been Managing Director since 2020, sits on the NZGDA board, and became its Chairperson in January 2026.</p>
+        <span class="status live">Bio received</span>
+      </div>
+      <div class="card">
+        <h3>RUC on Rails</h3>
+        <p class="who">Adam Johnston &middot; Co-founder &amp; CEO &middot; <a href="https://www.ruconrails.co.nz/" target="_blank" rel="noopener">ruconrails.co.nz</a></p>
+        <p class="desc">Adam Johnston (CEO) and Briyarne Pascoe (CTO) founded RUC on Rails in Dunedin in 2025, building the software layer for the shift of 3.6 million vehicles onto Road User Charges from 2028. Their app, RUC Pass, is live on iOS and Android with no GPS or hardware needed, and moves into retail from 2027 via an LOI with Activata and ePay covering up to 7,000 locations nationwide. Around NZ$200,000 raised and deployed to date; a seed round targeting NZ$750,000 reopens early 2027.</p>
+        <span class="status live">Keen for the evening</span>
+      </div>
+      <div class="card">
+        <h3>Karo</h3>
+        <p class="who">Rei Ishikawa &middot; <a href="https://karo.co.nz/" target="_blank" rel="noopener">karo.co.nz</a></p>
+        <p class="desc">M&#257;ori-owned software company building AI-enabled, data-sovereign digital tools for Aotearoa's health and social sector &mdash; reporting, PHO claiming, register management and case management across six products. 25 years of primary care experience, 300+ clients, registers for 23 PHOs and one DHB covering 3m+ patients, and 1,000,000+ claims processed a year. Looking to raise funding.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Intermentis</h3>
+        <p class="who">Greg Peyroux &middot; Co-founder &amp; CEO &middot; <a href="https://intermentis.com/" target="_blank" rel="noopener">intermentis.com</a></p>
+        <p class="desc">Greg Peyroux brings 20+ years across ICT, AI, commercialisation and governance to Intermentis, a Dunedin company building Soter, an AI-powered doorstep assistant that speaks with visitors, manages deliveries and expected guests, and loops in a resident or trusted contact when needed. An eight-household Whaikaha-supported pilot across a range of accessibility needs saw every household want to keep it. Targeting commercial production in 2027, seeking ~NZ$400,000 to finalise design and fund the first production run.</p>
+        <span class="status live">Bio received</span>
+      </div>
+      <div class="card">
+        <h3>Penguin Robotics</h3>
+        <p class="who">Chenrong Lu &middot; Co-founder &middot; <a href="https://penguinrobotics.net/" target="_blank" rel="noopener">penguinrobotics.net</a></p>
+        <p class="desc">26, ex-Soul Machines and ex-Engineered Arts (lead developer on the Ameca robot's AI system), now building Penguin Robotics: full-stack robots, from electronics and actuators to their own robot OS and AI, built to feel &ldquo;alive.&rdquo; Prototypes include Mushie and Hammy, plus a walking Moa in progress &mdash; the first walking robot built in Australia or NZ. Their real-time streaming lipsync model reportedly beats Nvidia's Audio2Face by 10x+ on performance and speed.</p>
+        <span class="status live">Bio received</span>
+      </div>
+      <div class="card">
+        <h3>Get Home Safe</h3>
+        <p class="who">Boyd Peacock &amp; Andrew Long &middot; <a href="https://www.gethomesafe.com/" target="_blank" rel="noopener">gethomesafe.com</a></p>
+        <p class="desc">Boyd Peacock founded Get Home Safe in Dunedin in 2012, lone worker safety and journey management software now used by organisations including Schneider Electric, Auckland Council and Auckland DHB, and expanded into Australia, Canada, the UK and the US. Punakaiki Fund took a 17% stake in 2020 at a $3m valuation; won Innovation at the Grand Business South Awards.</p>
+        <span class="status">Bio pending</span>
+      </div>
+      <div class="card">
+        <h3>Givenwell</h3>
+        <p class="who">Jonny Mirkin &middot; Founder &middot; <a href="https://givenwell.com/" target="_blank" rel="noopener">givenwell.com</a></p>
+        <p class="desc">Givenwell reimagines the employee assistance programme: employers choose what to cover and spend, staff choose their own therapist anywhere in the world. Two years in, it supports teams in 30 countries with an NPS of 69, was a top-six finalist at HR Tech Pitchfest in Las Vegas, and won a Business for Good award from the University of Otago. ARR is up 3.5x in the last 12 months; raising US$2m to build out go-to-market in NZ, Australia and the US, where it already has its first customers and is especially keen on US investors, customers and partners.</p>
+        <span class="status live">Bio received</span>
+      </div>
+      <div class="card">
+        <h3>Radley Tax</h3>
+        <p class="who">Trevor McIntyre &middot; Founder &amp; CEO (ex-ADInstruments, Nomos One, TracPlus) &middot; <a href="https://radley.tax" target="_blank" rel="noopener">radley.tax</a></p>
+        <p class="desc">&ldquo;R&amp;D, effortlessly&rdquo; &mdash; Radley captures the R&amp;D evidence as the work happens, with tax as the wedge: live now, pay-when-paid, with accounting, operations and IP following on the same record. 15 contracts and six-figure fees in its first three weeks selling in NZ, 112 more in pipeline, and a top-five global accounting firm negotiating to recommend it. Raising pre-seed.</p>
+        <span class="status live">Keen for the evening</span>
+      </div>
+      <div class="card">
+        <h3>Ripple</h3>
+        <p class="who">Trevor McIntyre &middot; Founder &amp; CEO (ex-ADInstruments, Nomos One, TracPlus) &middot; <a href="https://ripple.team" target="_blank" rel="noopener">ripple.team</a></p>
+        <p class="desc">An operating system for teams and their AI &mdash; a Company Brain and Multiplayer AI for 10&ndash;250 person firms with no AI team, where every decision is captured with the why. Live and paying, with teams resolving 70%+ of topics without a meeting, Microsoft Teams rollouts lined up with BDO and PanPac, SOC 2 complete, and a place in Ministry of Awesome's Founder Catalyst. Raising pre-seed.</p>
+        <span class="status live">Keen for the evening</span>
+      </div>
+      <div class="card">
+        <h3>Spellcaster Education</h3>
+        <p class="who">Rupert Denton &middot; Founder &amp; CEO &middot; <a href="https://spellcaster.education/" target="_blank" rel="noopener">spellcaster.education</a></p>
+        <p class="desc">A decade working with at-risk and trauma-affected teenagers in Australian secondary schools led Rupert Denton to found Spellcaster, a gamified spelling game for learners aged 9+ needing the most support, including dyslexia, other specific learning disabilities and cerebral palsy, with lesson-planning tools and progress dashboards for speech-language pathologists and teachers. Post-product and post-revenue across NZ, Australia and the US; raising from angel investors to scale globally.</p>
+        <span class="status live">Bio received</span>
+      </div>
+    </div>
+    <div class="roster-grid">
+      <div class="roster-row">
+        <p class="roster">
+          <b>Carmen Bernadou</b> &middot; <a href="https://questiory.com/" target="_blank" rel="noopener">Questiory</a><br>
+          <b>Aashima Yadav</b> &middot; <a href="https://handykea.com/" target="_blank" rel="noopener">HandyKea</a>
+        </p>
+      </div>
+      <div class="roster-row">
+        <p class="roster">
+          <b>Chris Hilder</b> &middot; <a href="https://www.kaffelogic.com/" target="_blank" rel="noopener">Kaffelogic</a><br>
+          <b>Hein</b> &middot; <span class="org">Radley Tax team</span>
+        </p>
+      </div>
+    </div>
+    <p class="note">Contact emails are held separately with the source list &mdash; left off this page since it may be shared more widely.</p>
+  </section>
+
+  <section>
+    <p class="label">The ask</p>
+    <h2>Over to you</h2>
+    <p>This page collates the bios and overviews from across Dunedin and Otago, ready for you and Rob to read through and choose who's invited to the Dunedin evening at the Railway Station, and who might take a seat in the convoy on to Queenstown.</p>
+  </section>
+
+  <footer>
+    <p class="label" style="margin-bottom:12px;">Profiled businesses and partners</p>
+    <div class="logo-strip">
+      <span class="logo-badge"><img src="assets/dunedinnz-logo-black.png" alt="" style="height:13px;">Dunedin</span>
+      <span class="logo-badge"><img src="assets/otago-logo-mark.png" alt="">University of Otago</span>
+      <span class="logo-badge"><span class="dot"></span>Startup Dunedin</span>
+      <span class="logo-badge"><span class="dot"></span>BLIS Technologies</span>
+      <span class="logo-badge"><span class="dot"></span>United Machinists</span>
+      <span class="logo-badge"><span class="dot"></span>Virtual Eye</span>
+      <span class="logo-badge"><span class="dot"></span>Oritain</span>
+      <span class="logo-badge"><span class="dot"></span>Scott Technology</span>
+      <span class="logo-badge"><span class="dot"></span>Education Perfect</span>
+      <span class="logo-badge"><span class="dot"></span>ADInstruments</span>
+      <span class="logo-badge"><span class="dot"></span>PocketSmith</span>
+      <span class="logo-badge"><span class="dot"></span>Zestt Wellness</span>
+    </div>
+    <p style="margin-top:18px;">Dunedin × Far Out &middot; working draft &middot; 20 October 2026 &middot; Dunedin wordmark and photography courtesy of the Dunedin NZ Visual Library, credit: DunedinNZ &middot; remaining marks shown as text credits until logo files are supplied</p>
+  </footer>
+
+</div>
